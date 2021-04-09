@@ -34,8 +34,8 @@ classdef LinearRegressionModel < matlab.mixin.SetGet
             % therefore use the hypothesis function as well
             % this calculation can be done by one line of code
             % returns the cost value J
-            J = (1 / (2*m)) * sum((hypothesis(obj) - obj.trainingData.commandVar).^2);
-            % IMP opj.hypothesis() !!
+            J = (1 / (2*m)) * sum((obj.hypothesis() - obj.trainingData.commandVar).^2);
+            
         end
         
         function hValue = hypothesis(obj)
@@ -47,7 +47,7 @@ classdef LinearRegressionModel < matlab.mixin.SetGet
             % this calculation can be done by one line of code
             
             hValue = obj.theta(1) + obj.theta(2) * X(:,2);
-            % IMP hValue = obj.theta * X 
+            % Alternativ:  hValue = X * obj.theta 
            
             
             
