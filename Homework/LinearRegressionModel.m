@@ -104,10 +104,7 @@ classdef LinearRegressionModel < matlab.mixin.SetGet
            % add x and y label
            xlabel('\theta_0');
            ylabel('\theta_1');
-         
-            
-            
-            
+
         end
         
         function h = showTrainingData(obj)

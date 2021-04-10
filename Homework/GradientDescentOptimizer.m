@@ -32,8 +32,7 @@ classdef GradientDescentOptimizer < matlab.mixin.SetGet
             % loop over theta-update-rule (maxIters):
             for i = 1:maxIters
             %   vectorized updaterule can be implemented in one line of code
-                theta(1) = theta(1) - alpha * (1/m) * sum(linearRegressionModel.hypothesis()- y);
-                theta(2) = theta(2) - alpha * (1/m) * sum((linearRegressionModel.hypothesis()- y) .* X(:,2));
+                theta = theta - (alpha/m)*(X'*(linearRegressionModel.hypothesis()-y));
                 
             %   update theta property of linearRegressionModel (we want to call the cost function in the next step)
                 linearRegressionModel.setTheta(theta(1),theta(2));
