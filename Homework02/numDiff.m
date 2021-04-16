@@ -23,7 +23,7 @@ function y = numDiff(func,x,method)
 % Subfunctions: none
 % MAT-files required: none
 %
-% See also: myNewton
+% See also: (used in) myNewton
 
 % Author: Finn Freiheit 
 % DHBW-Stuttgart
@@ -41,6 +41,8 @@ function y = numDiff(func,x,method)
      
         elseif strcmp(method,'forwardDiff')
             y = (func(x + hDiff) - func(x)) / hDiff;
-        end     
+        else
+            error("Error: the Method is not valid");
+        end %if   
 end %numDiff
 %------------- END OF CODE --------------

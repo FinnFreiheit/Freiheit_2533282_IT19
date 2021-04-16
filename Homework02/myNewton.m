@@ -61,7 +61,7 @@ end %for
 
 if ~exist('func','var')
     error('no valid function');
-end
+end%if
 
 if ~exist('dfunc','var')
     dfuncBool = 1;
@@ -69,14 +69,14 @@ if ~exist('dfunc','var')
     % he whants to use. 
     answer = questdlg('wich kind of differential algorithm do you want to use? ', ...
             'Differential Menu', ...
-            'ForwardDiff','BackwardDiff','CentralDiff','ForwardDiff');
+            'Forward Differential','Backward Differential','Central Differential','Forward Differential');
         % Handle response
         switch answer
-        case 'ForwardDiff'
+        case 'Forward Differential'
             methodFromMenu = 'forwardDiff';
-        case 'BackwardDiff'
+        case 'Backward Differential'
             methodFromMenu = 'backwardDiff';
-        case 'CentralDiff'
+        case 'Central Differential'
             methodFromMenu = 'centralDiff';
         end%Switch
     disp(['Using ', methodFromMenu]);
@@ -127,7 +127,7 @@ if strcmp(livePlot,'on')
     grid on;
     xlim('auto');
     ylim('auto');
-end
+end%if
 
 %% Calculate aproximated values with Newton-Function
 xOld = x0; 
@@ -144,12 +144,12 @@ for i = 1:maxIter
         df = dfunc(xOld);
     else
         df = numDiff(func,xOld,methodFromMenu);
-    end
+    end%if
     % avoid division by zero
     if df == 0
         abortFlagg = 'df = 0';
         break; 
-    end %if 
+    end%if 
     
     xNew = xOld  - f/df;
     
@@ -164,7 +164,7 @@ for i = 1:maxIter
         plot(ax1,i,xNew,'bo');
         semilogy(ax2,i,func(xNew), 'rx');
         pause(0.05); 
-    end
+    end%if
     
 end %for
 iters = i;
