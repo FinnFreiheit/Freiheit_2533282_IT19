@@ -54,17 +54,16 @@ for i = 1:nargin
         xeps = varargin{i+1};
     elseif strcmp (varargin{i},'LivePlot')
         livePlot = varargin{i+1};
-    end %if
-end %for
+    end 
+end
 
 %% Check whether there are input variables. If not, predefined ones are set
 
 if ~exist('func','var')
     error('no valid function');
-end%if
+end
 
-if ~exist('dfunc','var')
-    dfuncBool = 1;
+if ~exist('dfunc','var') % no need for additional flag
     % If there is no differential Funktion, the User is asked with differential algorithm
     % he whants to use. 
     answer = questdlg('wich kind of differential algorithm do you want to use? ', ...
@@ -78,14 +77,14 @@ if ~exist('dfunc','var')
             methodFromMenu = 'backwardDiff';
         case 'Central Differential'
             methodFromMenu = 'centralDiff';
-        end%Switch
+        end
     disp(['Using ', methodFromMenu]);
-end %if
+end 
 
 if ~exist('x0','var')
     x0 = 0;
     disp(['Using default x0 =  ', num2str(x0)]);
-end %if
+end %if - this is (old) bad style coming from c code. 
 
 if ~exist('maxIter','var')
     maxIter = 50;
@@ -140,7 +139,7 @@ for i = 1:maxIter
     end %if 
     
     % Use differential Funktion if given, if not use differential algorithm 
-    if dfuncBool == 0
+    if exist('dfunc','var')
         df = dfunc(xOld);
     else
         df = numDiff(func,xOld,methodFromMenu);
